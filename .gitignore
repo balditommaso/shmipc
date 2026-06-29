@@ -16,3 +16,5 @@ Module.symvers
 *.log
 
 bench
+tmp/
+bench_mmap
