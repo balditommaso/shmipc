@@ -65,10 +65,6 @@ void ipc_dev_destroy(void)
  * Allocate a free peer id for @pid: scan slots for either an existing
  * slot owned by @pid (-EBUSY, one slot per process) or the lowest free
  * slot to claim.
- *
- * Ordering: pid and generation are plain stores; they become visible
- * to lock-free userspace readers only once in_use is published with a
- * RELEASE store below. See shmipc_uapi.h for the full contract.
  */
 int ipc_dev_alloc_id(pid_t pid)
 {

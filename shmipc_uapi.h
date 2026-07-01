@@ -1,9 +1,6 @@
 #ifndef SHMIPC_UAPI_H
 #define SHMIPC_UAPI_H
 
-/*
- * User-facing ABI for /dev/shmipc.
-*/
 
 #ifdef __KERNEL__
 #include <linux/types.h>
@@ -23,14 +20,14 @@ struct shmipc_layout {
 	unsigned int total_size;
 };
 
-/* Retrieve the shared memory layout and this peer's assigned ID. */
+
 #define IPC_GET_LAYOUT _IOR('s', 1, struct shmipc_layout)
 
 
 struct shmipc_peer_slot {
-	unsigned int pid;        /* owning PID; valid only while in_use == 1 */
-	unsigned int generation; /* bumped every time this slot is (re)allocated */
-	unsigned int in_use;     /* 0 = free, 1 = occupied; release/acquire flag */
+	unsigned int pid;        
+	unsigned int generation; 
+	unsigned int in_use;     
 };
 
 

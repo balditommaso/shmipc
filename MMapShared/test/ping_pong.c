@@ -127,7 +127,7 @@ static int run_pinger(void *base,
 		sum += samples[i];
 	double mean = (double)sum / (double)rounds;
 
-	printf("\n=== shmipc ping-pong RTT (rounds=%ld, warmup=%ld) ===\n",
+	printf("\n=== mmap-test ping-pong RTT (rounds=%ld, warmup=%ld) ===\n",
 	       rounds, warmup);
 	printf("min:    %8.0f ns\n", (double)samples[0]);
 	printf("p50:    %8.0f ns\n", (double)percentile(samples, (size_t)rounds, 0.50));

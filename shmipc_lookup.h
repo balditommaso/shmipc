@@ -1,25 +1,3 @@
-/*
- * Userspace reference implementation for looking up a peer's output
- * section by PID.
- *
- * Usage pattern from an actual peer process:
- *
- *   int fd = open("/dev/shmipc", O_RDWR);
- *   struct shmipc_layout layout;
- *   ioctl(fd, IPC_GET_LAYOUT, &layout);
- *   void *base = mmap(NULL, layout.total_size, PROT_READ | PROT_WRITE,
- *                      MAP_SHARED, fd, 0);
- *
- *   int id = shmipc_find_peer_by_pid(base, &layout, target_pid);
- *   if (id >= 0) {
- *       void *peer_output = shmipc_output_addr(base, &layout, id);
- *       // peer_output is read-only unless id == layout.peer_id
- *   }
- *
- * The lookup walks the State Table directly -- no ioctl round-trip --
- * using the same release/acquire protocol the kernel publishes with.
- * See the concurrency contract documented in shmipc_uapi.h.
- */
 #include <stdatomic.h>
 #include <stddef.h>
 #include "shmipc_uapi.h"
